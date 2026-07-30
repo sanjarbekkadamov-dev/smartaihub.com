@@ -212,12 +212,21 @@ Telegram orqali bog‘lanish
 </footer>
 
 <script>
-
 function sendOrder(){
 
 let name = document.getElementById("name").value;
 let phone = document.getElementById("phone").value;
 let service = document.getElementById("service").value;
+
+
+if(name == "" || phone == "" || service == "Xizmat tanlang"){
+
+alert("Iltimos, barcha joylarni to‘ldiring!");
+
+return;
+
+}
+
 
 alert(
 "Buyurtmangiz qabul qilindi!\n\nIsm: "
@@ -228,7 +237,14 @@ alert(
 + service
 );
 
+
+document.getElementById("name").value="";
+document.getElementById("phone").value="";
+document.getElementById("service").value="Xizmat tanlang";
+
+
 }
+
 
 </script>
 </body>
