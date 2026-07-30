@@ -1,441 +1,2035 @@
 <!DOCTYPE html>
 <html lang="uz">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SmartAI Hub</title>
-
-<meta name="description" content="SmartAI Hub — AI xizmatlari, biznes yechimlari, reklama matnlari va tarjima xizmatlari.">
-
-<link rel="icon" type="image/png" href="logo.png">
-
-
-<style>
-
-body {
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#ffffff;
-    color:#222;
-}
-
-
-header {
-    background:#111827;
-    color:white;
-    padding:60px 20px;
-    text-align:center;
-}
-
-
-.logo {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:15px;
-}
-
-
-.logo img {
-    border-radius:50%;
-}
-
-
-h1 {
-    font-size:40px;
-}
-
-
-section {
-    padding:30px;
-    max-width:900px;
-    margin:auto;
-}
-
-
-.card {
-    background:#f9fafb;
-    padding:25px;
-    margin:20px 0;
-    border-radius:20px;
-    box-shadow:0 5px 15px #ddd;
-    transition:0.3s;
-}
-
-
-.card:hover {
-    transform:translateY(-5px);
-}
-
-
-input, select {
-
-    width:90%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #ccc;
-
-}
-
-
-button {
-
-    background:#111827;
-    color:white;
-    padding:12px 25px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    transition:0.3s;
-
-}
-
-
-button:hover {
-
-    transform:scale(1.05);
-
-}
-
-
-footer {
-
-    text-align:center;
-    padding:20px;
-    background:#111827;
-    color:white;
-
-}
-
-
-
-@media (max-width:600px){
-
-
-h1 {
-
-    font-size:30px;
-
-}
-
-
-header {
-
-    padding:40px 15px;
-
-}
-
-
-section {
-
-    padding:15px;
-
-}
-
-
-.card {
-
-    padding:20px;
-
-}
-
-
-.logo img {
-
-    width:60px;
-
-}
-
-
-input, select {
-
-    width:85%;
-
-}
-
-
-button {
-
-    width:90%;
-
-}
-
-
-}
-
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartAI Hub — AI xizmatlari, biznes yechimlari, reklama matnlari va tarjima xizmatlari.">
+    <meta name="keywords" content="AI, sun'iy intellekt, biznes, reklama, tarjima, Uzbekistan">
+    <meta name="author" content="SmartAI Hub">
+    <meta name="theme-color" content="#111827">
+    <meta property="og:title" content="SmartAI Hub — AI Yechimlari">
+    <meta property="og:description" content="Zamonaviy AI xizmatlari orqali biznesingizni rivojlantiring">
+    <meta property="og:type" content="website">
+    <title>SmartAI Hub — AI Yechimlari Markazi</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #111827;
+            --secondary: #1f2937;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f9fafb;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #ffffff;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        nav.scrolled {
+            padding: 10px 0;
+            background: rgba(17, 24, 39, 0.98);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-logo img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Header / Hero */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, #1e3a5f 100%);
+            color: white;
+            padding: 160px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 4px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .typing-text {
+            font-size: 22px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 15px;
+            min-height: 30px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: white;
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--light);
+            padding: 60px 20px;
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 25px auto 0;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            padding: 35px;
+            margin: 20px 0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card h2, .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h2 {
+            font-size: 28px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            transition: var(--transition);
+            z-index: 0;
+            opacity: 0.05;
+        }
+
+        .service-card:hover::after {
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card .price-tag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: var(--light);
+            border-radius: 20px;
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: var(--light);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            width: 75%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            z-index: 0;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .process-step h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .process-step p {
+            font-size: 15px;
+            color: var(--text-light);
+        }
+
+        /* Packages */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 2px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .package-card.featured::before {
+            content: 'Tavsiya etiladi';
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 40px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        }
+
+        .package-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .package-name {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .package-price {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 20px 0;
+            line-height: 1;
+        }
+
+        .package-price span {
+            font-size: 18px;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li i {
+            color: var(--success);
+            font-size: 16px;
+        }
+
+        .package-features li.not-included {
+            color: #d1d5db;
+            text-decoration: line-through;
+        }
+
+        .package-features li.not-included i {
+            color: var(--danger);
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-content h4 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .portfolio-content p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: var(--radius);
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        .team-member h4 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .team-member .role {
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .team-member p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Why Us */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .why-item {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .why-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .why-icon {
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .why-content h4 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .why-content p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 35px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 80px;
+            color: var(--accent);
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .stars {
+            color: var(--warning);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .author-info h5 {
+            font-size: 16px;
+            color: var(--primary);
+            margin-bottom: 3px;
+        }
+
+        .author-info span {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--primary);
+            transition: var(--transition);
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .faq-question:hover {
+            background: var(--light);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+            color: var(--accent);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-inner {
+            padding: 0 30px 25px;
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* Order Form */
+        .form-section {
+            background: linear-gradient(135deg, var(--light), #e0e7ff);
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 2px solid var(--border);
+            font-size: 15px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: white;
+        }
+
+        .contact-card h4 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            background: var(--primary);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-content p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+        }
+
+        .newsletter-form button {
+            padding: 14px 30px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            background: #0b0f19;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--success), #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: white;
+        }
+
+        .modal h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .modal p {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-close {
+            background: var(--light);
+            color: var(--text);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--border);
+        }
+
+        /* Animations on Scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .package-card.featured {
+                transform: scale(1);
+            }
+
+            .package-card.featured:hover {
+                transform: scale(1) translateY(-10px);
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid::before {
+                display: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .typing-text {
+                font-size: 18px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 50px 15px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .stat-number {
+                font-size: 32px;
+            }
+
+            header {
+                padding: 140px 15px 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .logo img {
+                width: 70px;
+                height: 70px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+
+            .service-card, .package-card, .testimonial-card {
+                padding: 25px 20px;
+            }
+        }
+
+        /* Utility */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-4 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+    </style>
 </head>
 <body>
 
-
-<header>
-
-<div class="logo">
-
-<img src="logo.png" width="80">
-
-<h1>SmartAI Hub</h1>
-
-</div>
-
-<p>AI yordamida biznesingizni tezroq rivojlantiring</p>
-
-<p>Reklama, matn, tarjima va biznes yechimlari</p>
-
-</header>
-
-
-
-<section>
-
-
-<div class="card">
-
-<h2>Xizmatlar</h2>
-
-<p>✓ Reklama matnlari tayyorlash</p>
-
-<p>✓ Biznes g‘oya va reja tuzish</p>
-
-<p>✓ Tarjima xizmatlari</p>
-
-<p>✓ AI yordamida biznes maslahatlari</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Xizmatlar narxi</h2>
-
-<p>Reklama matni — 50 000 so‘m</p>
-
-<p>Biznes g‘oya va reja — 100 000 so‘m</p>
-
-<p>Tarjima xizmati — 30 000 so‘mdan</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Biznes paketlar</h2>
-
-
-<h3>Start</h3>
-
-<p>50 000 so‘m</p>
-
-<p>✓ 5 ta reklama matni</p>
-
-<p>✓ Oddiy AI yordam</p>
-
-<a href="#buyurtma">
-<button>Start buyurtma</button>
-</a>
-
-
-<h3>Pro</h3>
-
-<p>200 000 so‘m</p>
-
-<p>✓ 20 ta reklama matni</p>
-
-<p>✓ Biznes g‘oya va maslahat</p>
-
-<a href="#buyurtma">
-<button>Pro buyurtma</button>
-</a>
-
-
-<h3>Premium</h3>
-
-<p>500 000 so‘m</p>
-
-<p>✓ To‘liq biznes yordam</p>
-
-<p>✓ Maxsus AI yechimlar</p>
-
-<a href="#buyurtma">
-<button>Premium buyurtma</button>
-</a>
-
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Biz haqimizda</h2>
-
-<p>
-SmartAI Hub — tadbirkorlar va bizneslar uchun zamonaviy AI yechimlari taqdim etuvchi xizmat.
-Biz reklama, matn yaratish, tarjima va biznes rivojlantirish bo‘yicha yordam beramiz.
-</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Nega biz?</h2>
-
-<p>✓ Tez va sifatli AI xizmatlari</p>
-
-<p>✓ Zamonaviy biznes yechimlari</p>
-
-<p>✓ Har bir mijozga mos yondashuv</p>
-
-<p>✓ Vaqt va xarajatni tejash</p>
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Mijozlar fikri</h2>
-
-<p>"SmartAI Hub yordamida biznesim uchun kerakli matnlarni tez tayyorladim."</p>
-
-<p>"AI xizmatlari vaqtimni tejadi va ishlarimni osonlashtirdi."</p>
-
-<p>"Professional yondashuv va sifatli natija."</p>
-
-</div>
-
-
-
-<div class="card" id="buyurtma">
-
-<h2>Buyurtma berish</h2>
-
-
-<input id="name" type="text" placeholder="Ismingiz">
-
-<br><br>
-
-
-<input id="phone" type="text" placeholder="Telefon raqamingiz">
-
-<br><br>
-
-
-<select id="service">
-
-<option>Xizmat tanlang</option>
-
-<option>Start paket</option>
-
-<option>Pro paket</option>
-
-<option>Premium paket</option>
-
-</select>
-
-
-<br><br>
-
-
-<button onclick="sendOrder()">Yuborish</button>
-
-
-</div>
-
-
-
-<div class="card">
-
-<h2>Bog‘lanish</h2>
-
-<p>Telegram: @SmartAI</p>
-
-
-<a href="https://t.me/Sanjarsmartaicom" target="_blank">
-
-<button>
-Telegram orqali bog‘lanish
-</button>
-
-</a>
-
-
-</div>
-
-
-
-</section>
-
-
-
-<footer>
-
-© 2026 SmartAI Hub
-
-</footer>
-
-
-
-<script>
-
-function sendOrder(){
-
-
-let name = document.getElementById("name").value;
-
-let phone = document.getElementById("phone").value;
-
-let service = document.getElementById("service").value;
-
-
-
-if(name == "" || phone == "" || service == "Xizmat tanlang"){
-
-
-alert("Iltimos, barcha joylarni to‘ldiring!");
-
-return;
-
-
-}
-
-
-
-alert(
-"Buyurtmangiz qabul qilindi!\n\nIsm: "
-+ name +
-"\nTelefon: "
-+ phone +
-"\nXizmat: "
-+ service
-);
-
-
-
-document.getElementById("name").value="";
-
-document.getElementById("phone").value="";
-
-document.getElementById("service").value="Xizmat tanlang";
-
-
-}
-
-
-</script>
-
-
-
-</body>
-
-</html>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="SmartAI Hub">
+                <span>SmartAI Hub</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#xizmatlar">Xizmatlar</a></li>
+                <li><a href="#narxlar">Narxlar</a></li>
+                <li><a href="#haqimizda">Biz haqimizda</a></li>
+                <li><a href="#mijozlar">Mijozlar</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#buyurtma">Buyurtma</a></li>
+                <li><a href="#aloqa">Aloqa</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header>
+        <div class="hero-content">
+            <div class="logo">
+                <img src="logo.png" alt="SmartAI Hub Logo">
+                <h1>SmartAI Hub</h1>
+            </div>
+            <div class="typing-text" id="typingText"></div>
+            <p class="hero-subtitle">Reklama, matn yaratish, tarjima va biznes rivojlantirish bo'yicha professional AI yechimlari</p>
+            <div class="hero-buttons">
+                <a href="#buyurtma" class="btn-primary">Buyurtma berish</a>
+                <a href="#xizmatlar" class="btn-secondary">Xizmatlarni ko'rish</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number" data-target="500">0</span>
+                <div class="stat-label">Muvaffaqiyatli loyihalar</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number" data-target="350">0</span>
+                <div class="stat-label">Mamnun mijozlar</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number" data-target="24">0</span>
+                <div class="stat-label">Soat ichida javob</div>
+            </div>
+            <div class="stat-item animate-on-scroll">
+                <span class="stat-number" data-target="98">0</span>
+                <div class="stat-label">Mijoz qoniqishi (%)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="xizmatlar">
+        <div class="section-header animate-on-scroll">
+            <h2>Xizmatlarimiz</h2>
+            <p>Biznesingiz uchun eng zamonaviy AI yechimlarini taklif qilamiz</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3>Reklama Matnlari</h3>
+                <p>Sizning biznesingizni eng yaxshi tarzda ifoda etuvchi, mijozlarni jalb qiluvchi professional reklama matnlari tayyorlaymiz.</p>
+                <span class="price-tag">50 000 so'mdan</span>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Biznes G'oyalar</h3>
+                <p>Yangi biznes boshlash yoki mavjud biznesingizni kengaytirish uchun innovatsion g'oyalar va strategik rejalashtirish.</p>
+                <span class="price-tag">100 000 so'mdan</span>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-language"></i></div>
+                <h3>Tarjima Xizmatlari</h3>
+                <p>Professional tarjima xizmatlari - O'zbek, Rus, Ingliz va boshqa tillarda yuqori sifatli tarjimalar.</p>
+                <span class="price-tag">30 000 so'mdan</span>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-robot"></i></div>
+                <h3>AI Maslahatlar</h3>
+                <p>Sun'iy intellekt texnologiyalaridan foydalangan holda biznes jarayonlarini optimallashtirish bo'yicha maslahatlar.</p>
+                <span class="price-tag">80 000 so'mdan</span>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+                <h3>Kontent Yozish</h3>
+                <p>SEO optimallashtirilgan blog postlari, ijtimoiy tarmoq postlari va veb-sayt kontentini yaratish.</p>
+                <span class="price-tag">40 000 so'mdan</span>
+            </div>
+            <div class="service-card animate-on-scroll">
+                <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Bozor Tadqiqoti</h3>
+                <p>Raqobatchilaringizni tahlil qilish, maqsadli auditoriyani o'rganish va bozor tendensiyalarini aniqlash.</p>
+                <span class="price-tag">150 000 so'mdan</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section">
+        <div class="section-header animate-on-scroll">
+            <h2>Ish Jarayoni</h2>
+            <p>Biz bilan ishlash oson va qulay</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">1</div>
+                <h4>Ariza qoldiring</h4>
+                <p>Buyurtma formasini to'ldiring yoki biz bilan bog'laning</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">2</div>
+                <h4>Tahlil qilamiz</h4>
+                <p>Sizning talablaringizni o'rganib, eng yaxshi yechimni tanlaymiz</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">3</div>
+                <h4>Ishlaymiz</h4>
+                <p>Professional jamoamiz loyihangiz ustida ishlaydi</p>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="step-number">4</div>
+                <h4>Topshiramiz</h4>
+                <p>Tayyor natijani sizga taqdim etamiz va qo'llab-quvvatlaymiz</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Packages -->
+    <section id="narxlar">
+        <div class="section-header animate-on-scroll">
+            <h2>Biznes Paketlar</h2>
+            <p>Biznesingiz hajmiga mos keladigan optimal tarifni tanlang</p>
+        </div>
+        <div class="packages-grid">
+            <div class="package-card animate-on-scroll">
+                <div class="package-name">Start</div>
+                <div class="package-price">50 000 <span>so'm</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> 5 ta reklama matni</li>
+                    <li><i class="fas fa-check"></i> Oddiy AI yordam</li>
+                    <li><i class="fas fa-check"></i> 3 kun ichida tayyor</li>
+                    <li><i class="fas fa-check"></i> Email qo'llab-quvvatlash</li>
+                    <li class="not-included"><i class="fas fa-times"></i> Biznes maslahat</li>
+                    <li class="not-included"><i class="fas fa-times"></i> Maxsus yechimlar</li>
+                </ul>
+                <a href="#buyurtma" class="btn-secondary" style="width:100%; display:block; text-align:center;">Tanlash</a>
+            </div>
+            <div class="package-card featured animate-on-scroll">
+                <div class="package-name">Pro</div>
+                <div class="package-price">200 000 <span>so'm</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> 20 ta reklama matni</li>
+                    <li><i class="fas fa-check"></i> Biznes g'oya va maslahat</li>
+                    <li><i class="fas fa-check"></i> 2 kun ichida tayyor</li>
+                    <li><i class="fas fa-check"></i> 24/7 Telegram qo'llab-quvvatlash</li>
+                    <li><i class="fas fa-check"></i> 1 ta tarjima xizmati</li>
+                    <li class="not-included"><i class="fas fa-times"></i> Maxsus yechimlar</li>
+                </ul>
+                <a href="#buyurtma" class="btn-primary" style="width:100%; display:block; text-align:center;">Tanlash</a>
+            </div>
+            <div class="package-card animate-on-scroll">
+                <div class="package-name">Premium</div>
+                <div class="package-price">500 000 <span>so'm</span></div>
+                <ul class="package-features">
+                    <li><i class="fas fa-check"></i> Cheksiz reklama matnlari</li>
+                    <li><i class="fas fa-check"></i> To'liq biznes yordam</li>
+                    <li><i class="fas fa-check"></i> 1 kun ichida tayyor</li>
+                    <li><i class="fas fa-check"></i> Shaxsiy menejer</li>
+                    <li><i class="fas fa-check"></i> Maxsus AI yechimlar</li>
+                    <li><i class="fas fa-check"></i> VIP qo'llab-quvvatlash</li>
+                </ul>
+                <a href="#buyurtma" class="btn-secondary" style="width:100%; display:block; text-align:center;">Tanlash</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section>
+        <div class="section-header animate-on-scroll">
+            <h2>Bajarilgan Ishlar</h2>
+            <p>Bizning so'nggi loyihalarimizdan namunalar</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-item animate-on-scroll">
+                <div class="portfolio-img"><i class="fas fa-shopping-bag"></i></div>
+                <div class="portfolio-content">
+                    <h4>Online Do'kon</h4>
+                    <p>50 ta mahsulot uchun reklama matnlari va SEO kontenti</p>
+                </div>
+            </div>
+            <div class="portfolio-item animate-on-scroll">
+                <div class="portfolio-img"><i class="fas fa-utensils"></i></div>
+                <div class="portfolio-content">
+                    <h4>Restoran Tarmog'i</h4>
+                    <p>Ijtimoiy tarmoqlar uchun 3 oylik kontent rejasi</p>
+                </div>
+            </div>
+            <div class="portfolio-item animate-on-scroll">
+                <div class="portfolio-img"><i class="fas fa-graduation-cap"></i></div>
+                <div class="portfolio-content">
+                    <h4>Ta'lim Markazi</h4>
+                    <p>To'liq marketing strategiyasi va reklama kampaniyasi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="haqimizda" style="background: var(--light);">
+        <div class="section-header animate-on-scroll">
+            <h2>Biz Haqimizda</h2>
+            <p>SmartAI Hub jamoasi haqida batafsil ma'lumot</p>
+        </div>
+        <div class="card animate-on-scroll">
+            <p style="font-size: 17px; line-height: 2; color: var(--text);">
+                <strong>SmartAI Hub</strong> — tadbirkorlar va bizneslar uchun zamonaviy AI yechimlari taqdim etuvchi yetakchi xizmat. 
+                Biz 2024-yildan beri faoliyat yuritib kelmoqdamiz va shu vaqt ichida 500 dan ortiq muvaffaqiyatli loyihalarni amalga oshirdik.
+            </p>
+            <p style="font-size: 17px; line-height: 2; color: var(--text); margin-top: 15px;">
+                Bizning maqsadimiz — sun'iy intellekt texnologiyalaridan foydalangan holda, kichik va o'rta bizneslarga katta kompaniyalar 
+                darajasidagi marketing va kontent yechimlarini hamyonbop narxlarda taqdim etish. Har bir mijoz biz uchun alohida ahamiyatga ega 
+                va biz har bir loyiha ustida individual yondashuv bilan ishlaymiz.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; text-align: center;">
+                <div>
+                    <div style="font-size: 36px; font-weight: 800; color: var(--accent);">2+</div>
+                    <div style="color: var(--text-light); margin-top: 5px;">Yillik tajriba</div>
+                </div>
+                <div>
+                    <div style="font-size: 36px; font-weight: 800; color: var(--accent);">15+</div>
+                    <div style="color: var(--text-light); margin-top: 5px;">Professional mutaxassis</div>
+                </div>
+                <div>
+                    <div style="font-size: 36px; font-weight: 800; color: var(--accent);">50+</div>
+                    <div style="color: var(--text-light); margin-top: 5px;">Hamkor kompaniyalar</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section>
+        <div class="section-header animate-on-scroll">
+            <h2>Bizning Jamoa</h2>
+            <p>Sizning loyihangiz ustida ishlaydigan professional mutaxassislar</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar"><i class="fas fa-user"></i></div>
+                <h4>Sanjarbek</h4>
+                <div class="role">Asoschi & CEO</div>
+                <p>AI texnologiyalari va biznes strategiyasi bo'yicha 5 yillik tajriba</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar"><i class="fas fa-user"></i></div>
+                <h4>Aziza</h4>
+                <div class="role">Kontent Menejeri</div>
+                <p>Professional kopirayter va kontent strategi. 200+ muvaffaqiyatli loyiha</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar"><i class="fas fa-user"></i></div>
+                <h4>Bekzod</h4>
+                <div class="role">AI Mutaxassisi</div>
+                <p>Sun'iy intellekt va machine learning bo'yicha ixtisoslashgan mutaxassis</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+            <div class="team-member animate-on-scroll">
+                <div class="team-avatar"><i class="fas fa-user"></i></div>
+                <h4>Madina</h4>
+                <div class="role">Tarjima Menejeri</div>
+                <p>5 tilni professional tarjima qiladi. Diplomli filolog</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section style="background: var(--light);">
+        <div class="section-header animate-on-scroll">
+            <h2>Nega Aynan Biz?</h2>
+            <p>Bizni boshqa xizmatlardan ajratib turuvchi afzalliklar</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-bolt"></i></div>
+                <div class="why-content">
+                    <h4>Tez va Sifatli</h4>
+                    <p>Zamonaviy AI texnologiyalari yordamida ishlarini tez va yuqori sifatda bajaramiz. Vaqtinchalik talablarni qondirish uchun eng yaxshi yechimlarni taklif qilamiz.</p>
+                </div>
+            </div>
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-cogs"></i></div>
+                <div class="why-content">
+                    <h4>Zamonaviy Yechimlar</h4>
+                    <p>Eng so'nggi AI modellari va texnologiyalaridan foydalanib, biznesingiz raqobatdoshlardan ajralib turishiga yordam beramiz.</p>
+                </div>
+            </div>
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-user-check"></i></div>
+                <div class="why-content">
+                    <h4>Individual Yondashuv</h4>
+                    <p>Har bir mijozning ehtiyojlarini chuqur o'rganib, shaxsiy yondashuv bilan ishlaymiz. Sizning biznesingiz — bizning ustuvorligimiz.</p>
+                </div>
+            </div>
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-piggy-bank"></i></div>
+                <div class="why-content">
+                    <h4>Vaqt va Xarajatni Tejash</h4>
+                    <p>AI avtomatlashtirish orqali jarayonlarni tezlashtiramiz va xarajatlarni kamaytiramiz. Natijada sizga ham vaqt, ham mablag' tejaladi.</p>
+                </div>
+            </div>
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-headset"></i></div>
+                <div class="why-content">
+                    <h4>24/7 Qo'llab-quvvatlash</h4>
+                    <p>Istalgan vaqtda biz bilan bog'lanishingiz mumkin. Savollaringizga tez va aniq javob beramiz.</p>
+                </div>
+            </div>
+            <div class="why-item animate-on-scroll">
+                <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="why-content">
+                    <h4>Kafolatlangan Natija</h4>
+                    <p>Ishimiz sifatiga to'liq javobgarlik olamiz. Agar natija sizni qoniqtirmasa, bepul qayta ishlaymiz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="mijozlar" class="testimonials-section">
+        <div class="section-header animate-on-scroll">
+            <h2>Mijozlar Fikri</h2>
+            <p>Biz haqimizda mijozlarimiz nima deydi?</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"SmartAI Hub yordamida biznesim uchun kerakli matnlarni juda tez tayyorladim. Sifati ajoyib, narxi ham qulay. Hamma tadbirkorga tavsiya qilaman!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">DA</div>
+                    <div class="author-info">
+                        <h5>Davron A.</h5>
+                        <span>Online do'kon egasi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"AI xizmatlari vaqtimni tejadi va ishlarimni osonlashtirdi. Endi reklama matnlari uchun katta vaqt sarflamayman. Rahmat SmartAI Hub jamoasiga!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">NK</div>
+                    <div class="author-info">
+                        <h5>Nodira K.</h5>
+                        <span>Restoran menejeri</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="testimonial-text">"Professional yondashuv va sifatli natija. Biznes rejamni 2 kunda tayyorlab berishdi va u investorga taqdim etish uchun juda yaxshi chiqdi."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JR</div>
+                    <div class="author-info">
+                        <h5>Jasur R.</h5>
+                        <span>Startap asoschisi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Tarjima xizmatidan foydalandim. Ingliz tilidagi hujjatlarimni professional tarzda tarjima qilishdi. Xatoliklar deyarli yo'q edi."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">ST</div>
+                    <div class="author-info">
+                        <h5>Sardor T.</h5>
+                        <span>Yuridik firma direktori</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Premium paketni sotib oldim va hech afsuslanmadim. Shaxsiy menejer har doim aloqada, barcha savollarimga javob berdi. Sifat zoʻr!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">FM</div>
+                    <div class="author-info">
+                        <h5>Farida M.</h5>
+                        <span>Marketing agentligi</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card animate-on-scroll">
+                <div class="stars">
